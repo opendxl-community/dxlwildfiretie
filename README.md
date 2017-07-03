@@ -1,26 +1,62 @@
-# dxlwildfiretie
-Wildfire TIE Update DXL Python Service
-====================================================
 
-Overview
---------
+# OpenDXL-WildFireTIE
+The Wildfire TIE DXL Python application polls the Wildfire analysis data and updates TIE over the DXL fabric.
 
-The Wildfire TIE DXL Python service polls the Wildfire analysis data and updates TIE over the DXL `Data Exchange Layer <http://www.mcafee.com/us/solutions/data-exchange-layer.aspx>`_ (DXL) fabric.
+## Introduction
 
-Here are the conditions:
-
-**WE NEVER SET A SCORE TO ANYTHING BEYOND UNKNOWN. TRUSTED SCORES WILL BE LEFT TO THE ENTERPRISE OWNERS 
-
-1) If TIE has a more critical rating than Wildfire, we do not change the reputation score
-2) If TIE has no record of the Wildfire file, we create it in TIE and assign the score appropriately
-3) If TIE has a record of the file and Wildfire reports it as being malicious, we adjust the score acording to the delta between the enterprise rating and the Wildfire rating
+Customers are regularly challenged by having made multiple high dollar investments in disjointeded best of breed solutions. As such point to point integration is usually required to bridge the gap in architectures offering synergistic value to the organization. As such, WildFire is a very popular sandbox technology from PaloAlto Networks that many customers employ. This module integrates the value of WildFire sandboxing technologies, cloud or on premise appliances, with the effective thread mitigation at the endpoint offered by McAfee's Threat Intelligence Exchange (TIE).
 
 
+## Startup
+  Launch the integration process by executing:
+  
+  ```
+  #python wf.py
+  ```
 
-LICENSE
--------
+## Setup
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
-License. You may obtain a copy of the License at
+### McAfee OpenDXL SDK
 
-`<http://www.apache.org/licenses/LICENSE-2.0>`_
+https://www.mcafee.com/us/developers/open-dxl/index.aspx
+
+McAfee Threat Intelligence Exchange (TIE) DXL Python Client Library at the follow link:
+
+https://github.com/opendxl/opendxl-tie-client-python/wiki
+
+* Certificate Files Creation [link](https://opendxl.github.io/opendxl-client-python/pydoc/certcreation.html)
+* ePO Certificate Authority (CA) Import [link](https://opendxl.github.io/opendxl-client-python/pydoc/epocaimport.html)
+* ePO Broker Certificates Export  [link](https://opendxl.github.io/opendxl-client-python/pydoc/epobrokercertsexport.html)
+
+
+
+### Edit the dxlclient.config
+```
+[Certs]
+BrokerCertChain=certs/brokercert.crt
+CertFile=certs/client.crt
+PrivateKey=certs/client.key
+
+[Brokers]
+{}={};8883;
+```
+
+### wf.config
+
+Update the wf.config file with the WildFire API key. Please consult the WildFire documentation for steps to obtain the key.
+It is recommended to use the WildFire appliance as your source for intelligence.
+
+wf_age: How far back should the WildFire repository go?
+
+wf_host: This defaults to WildFire cloud. Please update with the location of your appliance if you have a WildFire on-premise deployment.
+
+```
+[wildfire]
+apikey=<API KEY FROM WILDFIRE>
+wf_age=1
+
+# This is the default cloud instance which returns all entries
+# not just what your organization submitted. Please change this to your
+# appliance if you have one
+wf_host=https://wildfire.paloaltonetworks.com
+```
