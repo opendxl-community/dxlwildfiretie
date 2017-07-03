@@ -4,7 +4,7 @@ The Wildfire TIE DXL Python application polls the Wildfire analysis data and upd
 
 ## Introduction
 
-Customers are regularly challenged by having made multiple high dollar investments in disjointed best of breed solutions. As such, point-to-point integration is usually required to bridge the gap in architectures offering synergistic value to the organization. And, since WildFire is a very popular sandbox technology from PaloAlto Networks that many customers employ, this module integrates the value of WildFire sandboxing technologies, cloud or on premise appliances, with the effective thread mitigation at the endpoint offered by McAfee's Threat Intelligence Exchange (TIE).
+Customers are regularly challenged by having made multiple high dollar investments in disjointed best of breed solutions. As such, point-to-point integration is usually required to bridge the gap in architectures offering synergistic value to the organization. And, since WildFire is a very popular sandbox technology from PaloAlto Networks that many customers employ, this module integrates the value of WildFire sandboxing technologies, cloud or on premise appliances, with the effective threat mitigation at the endpoint offered by McAfee's Threat Intelligence Exchange (TIE).
 
 ## Startup
   Launch the integration process by executing:
