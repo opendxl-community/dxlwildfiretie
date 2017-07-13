@@ -15,6 +15,16 @@ Customers are regularly challenged by having made multiple high dollar investmen
 
 ## Setup
 
+To run OpenDXL-WildFireTIE install Python 2.7 or later. Python 3 is not currently supported. 
+
+Install the required dependencies with the requirements.txt file:
+
+```sh
+$ pip install -r requirements.txt
+```
+
+This will install the requests module.
+
 ### McAfee OpenDXL SDK
 
 https://www.mcafee.com/us/developers/open-dxl/index.aspx
@@ -30,6 +40,9 @@ https://github.com/opendxl/opendxl-tie-client-python/wiki
 
 
 ### Edit the dxlclient.config
+
+Provision DXL client certificates and fill in the broker list for the DXL Client.
+
 ```
 [Certs]
 BrokerCertChain=certs/brokercert.crt
@@ -39,6 +52,8 @@ PrivateKey=certs/client.key
 [Brokers]
 {}={};8883;
 ```
+
+For more information on configuring the DXL client see the [OpenDXL Python Client SDK Documentation](https://opendxl.github.io/opendxl-client-python/pydoc/index.html)
 
 ### wf.config
 
