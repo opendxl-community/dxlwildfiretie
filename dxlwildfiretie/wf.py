@@ -1,5 +1,5 @@
 import requests
-import json
+import re
 import os
 import sys
 import logging
@@ -85,7 +85,7 @@ for el in tree.findall('get-verdict-info'):
 
     # Build a dictionary of results that should be in scope for updating TIE
     # 1 = malware, 0 = benign, 2 = grayware, -100 = pending, -101 = error, -102 = unknown
-    if tmpVerdict == "1":
+    if tmpVerdict == "1" and re.findall(r"([a-fA-F\d]{32})", tmpMD5)>0 and re.findall(r"([a-fA-F\d]{64})", tmpSHA256):
         WFResult[childcounter] = {}
         WFResult[childcounter]['verdict']=tmpVerdict
         WFResult[childcounter]['md5']=tmpMD5
