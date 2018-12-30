@@ -85,7 +85,9 @@ for el in tree.findall('get-verdict-info'):
 
     # Build a dictionary of results that should be in scope for updating TIE
     # 1 = malware, 0 = benign, 2 = grayware, -100 = pending, -101 = error, -102 = unknown
-    if tmpVerdict == "1" and len(re.findall(r"([a-fA-F\d]{32})", tmpMD5))>0 and len(re.findall(r"([a-fA-F\d]{64})",
+    if tmpMD5 is not None and tmpSHA256 is not None and tmpVerdict == "1" and len(re.findall(r"([a-fA-F\d]{32})",
+                                                                                        tmpMD5))>0 \
+            and len(re.findall(r"([a-fA-F\d]{64})",
                                                                                          tmpSHA256))>0:
         WFResult[childcounter] = {}
         WFResult[childcounter]['verdict']=tmpVerdict
@@ -174,7 +176,7 @@ with DxlClient(config) as client:
                     HashType.SHA256: currentSHA256},
                 filename=currentFilename,
                 comment="Reputation set via OpenDXL WildFire Integration")
-            print "Reputation set for: " + str(fileKey) + ": " + currentMD5 
+            print("Reputation set for: " + str(fileKey) + ": " + currentMD5)
 
         else:
-            print "Skipping: " + str(fileKey) + ": " + currentMD5
+            print("Skipping: " + str(fileKey) + ": " + currentMD5)
