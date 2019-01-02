@@ -85,10 +85,11 @@ for el in tree.findall('get-verdict-info'):
 
     # Build a dictionary of results that should be in scope for updating TIE
     # 1 = malware, 0 = benign, 2 = grayware, -100 = pending, -101 = error, -102 = unknown
-    if tmpMD5 is not None and tmpSHA256 is not None and tmpVerdict == "1" and len(re.findall(r"([a-fA-F\d]{32})",
-                                                                                        tmpMD5))>0 \
-            and len(re.findall(r"([a-fA-F\d]{64})",
-                                                                                         tmpSHA256))>0:
+    if tmpMD5 is not None \
+            and tmpSHA256 is not None \
+            and tmpVerdict == "1" \
+            and len(re.findall(r"([a-fA-F\d]{32})", tmpMD5))>0 \
+            and len(re.findall(r"([a-fA-F\d]{64})", tmpSHA256))>0:
         WFResult[childcounter] = {}
         WFResult[childcounter]['verdict']=tmpVerdict
         WFResult[childcounter]['md5']=tmpMD5
